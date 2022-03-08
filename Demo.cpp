@@ -22,6 +22,15 @@ int main() {
 @-------@
 @@@@@@@@@
 */
+
+	// cout << ariel::mat(43, 57, '@', '-') << endl;
+	// cout << ariel::mat(57, 43, '@', '-') << endl;
+	cout << ariel::mat(11, 77, '@', '-') << endl;
+	cout << ariel::mat(77, 11, '@', '-') << endl;
+	// cout << ariel::mat(101, 99, '@', '-') << endl;
+	// cout << ariel::mat(99, 101, '@', '-') << endl;
+	// cout << ariel::mat(101, 101, '@', '-') << endl;
+
 	cout << ariel::mat(13, 5, '@', '-') << endl; 
 /* Should print:
 @@@@@@@@@@@@@
