@@ -40,7 +40,7 @@ TEST_CASE("Good input") {
 
         // credit https://stackoverflow.com/questions/2896600/how-to-replace-all-occurrences-of-a-character-in-string
         std::replace(str1.begin(), str1.end(), '\r', '\n');  // replace one char to another in the string
-        CHECK_EQ(str1, "111\n111\n111\n");
+        CHECK_EQ(str1, "111\n111\n111");
     }
 
 
@@ -109,7 +109,7 @@ TEST_CASE("Good input") {
 
         string first_line = str2.substr(0, 101);
         string second_line = str2.substr(102, 101);
-        string third_line = str2.substr(203, 101);
+        string third_line = str2.substr(204, 101);
         string middle_line = str2.substr(101*48+48, 101);
 
         string first_line_check = "";
@@ -123,7 +123,7 @@ TEST_CASE("Good input") {
         // first_line - only 1 -> "11111111...1"
         // second line - only 1 at corners "1----.....-1"
         // third line - only '-' before corners "1-111111111....111-1"
-        // middle line - switching one after another "1-1-1-1-1-1-.....-1-1"
+        // middle line - switching one after another "1-1-1-...-11111-..-1-1" <- while the five chars in the middle is indexes 48 to 52 (perfect middle) of line
         for (int i=0; i<101; i++){
             first_line_check += '1'; // init first
              
@@ -141,13 +141,17 @@ TEST_CASE("Good input") {
                 third_line_check += '1';
             }
             
-            if (flag){ // init mid
+            if (flag && (i<48 || i > 52)){ // init mid
                 middle_line_check += '1';
                 flag = false;
             }
-            else {
+            else if (!flag && (i<48 || i > 52)){
                 middle_line_check += '-';
                 flag = true;
+            }
+            else {
+                middle_line_check += '1';
+                flag = false;
             }
         }
         
